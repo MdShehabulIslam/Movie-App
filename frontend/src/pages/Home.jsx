@@ -44,6 +44,18 @@ export const Home = () => {
     }
   };
 
+  const loadPopularMovies = async () => {
+    try {
+      const popularMovies = await getPopularMovies();
+      setMovies(popularMovies);
+    } catch (error) {
+      console.log(error);
+      setError("Failed to load movies...");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="home">
       <form className="search-form" onSubmit={handleSearch}>
@@ -57,6 +69,18 @@ export const Home = () => {
         <button className="search-button" type="submit" disabled={loading}>
           {loading ? "Searching..." : "Search"}
         </button>
+        {searchQuery && movies.length > 0 && (
+          <button
+            className="search-button"
+            type="button"
+            onClick={() => {
+              setSearchQuery("");
+              loadPopularMovies();
+            }}
+          >
+            Back to Popular Movies
+          </button>
+        )}
       </form>
 
       {error && <div className="error-message">{error}</div>}

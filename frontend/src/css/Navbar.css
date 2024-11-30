@@ -1,31 +1,73 @@
 .navbar {
-  background-color: #000000;
-  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 1.2rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff4444 0%, #ff1111 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff5555 0%, #ff2222 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .navbar-links {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .nav-link {
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #ff4444 0%, #ff1111 100%);
+  transition: width 0.3s ease;
+  border-radius: 2px;
 }
 
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link:hover::after {
+  width: 80%;
 }
 
 @media (max-width: 768px) {
@@ -34,14 +76,31 @@
   }
 
   .navbar-brand {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .navbar-links {
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .nav-link {
-    padding: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
   }
+}
+
+/* Animation for page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  animation: fadeIn 0.5s ease-out forwards;
 }
