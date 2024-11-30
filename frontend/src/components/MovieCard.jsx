@@ -1,28 +1,27 @@
 import React from "react";
 import { useMovieContext } from "../contexts/MovieContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "../css/MovieCard.css";
 
 const MovieCard = ({ movie }) => {
-  const { toggleFavorite, isFavorite } = useMovieContext();
+  const { toggleFavorite, isFavorite, selectedMovie, setSelectedMovie } =
+    useMovieContext();
 
   return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={() => setSelectedMovie(movie)}>
       <div className="movie-poster">
-        <img 
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
         />
         <button
           className={`favorite-btn ${isFavorite(movie) ? "active" : ""}`}
-          onClick={() => toggleFavorite(movie)}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFavorite(movie);
+          }}
         >
-          {isFavorite(movie) ? (
-            <FavoriteIcon />
-          ) : (
-            <FavoriteBorderIcon />
-          )}
+          <FavoriteIcon />
         </button>
       </div>
       <div className="movie-info">
