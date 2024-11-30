@@ -92,17 +92,47 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
   padding: 1rem 0;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .error-message {
   color: #ff6b6b;
   text-align: center;
-  margin: 1rem 0;
+  margin: 2rem auto;
   font-size: 1.1rem;
-  padding: 1rem;
+  padding: 2rem;
   background: rgba(255, 107, 107, 0.1);
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 107, 107, 0.2);
+  max-width: 600px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.error-message p {
+  margin-bottom: 1.5rem;
+}
+
+.retry-button {
+  background: transparent;
+  border: 2px solid rgba(255, 107, 107, 0.3);
+  color: #ff6b6b;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.retry-button:hover {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: rgba(255, 107, 107, 0.5);
+  transform: translateY(-1px);
+}
+
+.retry-button:active {
+  transform: translateY(1px);
 }
 
 .no-results {
@@ -145,5 +175,16 @@
   .movies-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
