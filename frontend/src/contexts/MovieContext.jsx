@@ -2,8 +2,6 @@ import { createContext, useState, useEffect, useContext } from "react";
 
 const MovieContext = createContext();
 
-export const useMovieContext = () => useContext(MovieContext);
-
 export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState(() => {
@@ -39,3 +37,5 @@ export const MovieProvider = ({ children }) => {
     <MovieContext.Provider value={value}>{children}</MovieContext.Provider>
   );
 };
+
+export const useMovieContext = () => useContext(MovieContext);
